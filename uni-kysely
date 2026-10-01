@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Uni-kysely | TE.2</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.55),
+                    rgba(0,0,0,0.70)
+                ),
+                url("tausta.png");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+
+            margin: 50px auto;
+
+            padding: 40px;
+
+            background: rgba(10,10,15,0.85);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 0 40px rgba(0,0,0,0.7);
+
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            text-align: center;
+
+            font-size: 65px;
+
+            letter-spacing: 8px;
+
+            margin-top: 0;
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 10px white,
+                0 0 30px rgba(255,255,255,0.4);
+        }
+
+        .subtitle {
+            text-align: center;
+
+            font-size: 21px;
+
+            margin-bottom: 30px;
+
+            opacity: 0.9;
+        }
+
+        .authors {
+            text-align: center;
+
+            padding: 12px;
+
+            margin-bottom: 30px;
+
+            background: rgba(255,255,255,0.10);
+
+            border-radius: 12px;
+        }
+
+        .info {
+            background: rgba(255,255,255,0.10);
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.6;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h2 {
+            font-size: 19px;
+
+            margin-bottom: 12px;
+        }
+
+        select {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            background: white;
+
+            color: black;
+
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: 3px solid rgba(255,255,255,0.4);
+        }
+
+        button {
+            width: 100%;
+
+            padding: 18px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: white;
+
+            color: black;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+
+            box-shadow:
+                0 0 25px rgba(255,255,255,0.4);
+        }
+
+        .anonymous {
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-size: 13px;
+
+            opacity: 0.7;
+        }
+
+        #thanks {
+            display: none;
+
+            text-align: center;
+
+            padding: 40px 10px;
+        }
+
+        #thanks h2 {
+            font-size: 35px;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 40px;
+
+                letter-spacing: 4px;
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>UNI-KYSELY</h1>
+
+    <div class="subtitle">
+        TikTokin ja nukkumisen yhteys
+    </div>
+
+    <div class="authors">
+        <strong>TE.2</strong><br>
+        Kyselyn tekijät: Valtteri, Luka ja Valle
+    </div>
+
+
+    <div class="info">
+
+        <strong>📱 Anonyymi kysely</strong>
+
+        <br><br>
+
+        Tämän kyselyn tarkoituksena on selvittää,
+        onko TikTokin katselulla yhteyttä nukkumiseen.
+
+        <br><br>
+
+        Älä kirjoita vastauksiin nimeäsi tai muita
+        henkilötietoja.
+
+        Kyselyyn vastaaminen kestää noin yhden minuutin.
+
+    </div>
+
+
+    <!--
+        VASTAUKSET LÄHETETÄÄN TÄHÄN SÄHKÖPOSTIIN
+    -->
+
+    <form
+        action="https://formsubmit.co/valtteri.vartiala@edu.ylojarvi.fi"
+        method="POST"
+    >
+
+        <!-- Sähköpostin otsikko -->
+
+        <input
+            type="hidden"
+            name="_subject"
+            value="Uni-kyselyn uusi vastaus"
+        >
+
+        <!-- Ei captcha-kyselyä -->
+
+        <input
+            type="hidden"
+            name="_captcha"
+            value="false"
+        >
+
+        <!-- Sähköpostin ulkoasu -->
+
+        <input
+            type="hidden"
+            name="_template"
+            value="table"
+        >
+
+
+        <!-- KYSYMYS 1 -->
+
+        <div class="question">
+
+            <h2>
+                1. Kuinka kauan katsot TikTokia yleensä ennen nukkumaanmenoa?
+            </h2>
+
+            <select
+                name="TikTokin katseluaika"
+                required
+            >
+
+                <option value="">
+                    Valitse vastaus...
+                </option>
+
+                <option>
+                    En katso TikTokia ennen nukkumaanmenoa
+                </option>
+
+                <option>
+                    Alle 30 minuuttia
+                </option>
+
+                <option>
+                    30–60 minuuttia
+                </option>
+
+                <option>
+                    1–2 tuntia
+                </option>
+
+                <option>
+                    Yli 2 tuntia
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- KYSYMYS 2 -->
+
+        <div class="question">
+
+            <h2>
+                2. Mihin aikaan menet yleensä nukkumaan?
+            </h2>
+
+            <select
+                name="Nukkumaanmenoaika"
+                required
+            >
+
+                <option value="">
+                    Valitse vastaus...
+                </option>
+
+                <option>
+                    Ennen klo 21
+                </option>
+
+                <option>
+                    21–22
+                </option>
+
+                <option>
+                    22–23
+                </option>
+
+                <option>
+                    23–00
+                </option>
+
+                <option>
+                    00–01
+                </option>
+
+                <option>
+                    01 jälkeen
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- KYSYMYS 3 -->
+
+        <div class="question">
+
+            <h2>
+                3. Kuinka helposti nukahdat yleensä?
+            </h2>
+
+            <select
+                name="Nukahtamisen vaikeus"
+                required
+            >
+
+                <option value="">
+                    Valitse vastaus...
+                </option>
+
+                <option>
+                    Erittäin helposti
+                </option>
+
+                <option>
+                    Melko helposti
+                </option>
+
+                <option>
+                    Vaihtelevasti
+                </option>
+
+                <option>
+                    Melko vaikeasti
+                </option>
+
+                <option>
+                    Erittäin vaikeasti
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- KYSYMYS 4 -->
+
+        <div class="question">
+
+            <h2>
+                4. Kuinka kauan nukut yleensä yössä?
+            </h2>
+
+            <select
+                name="Unen määrä"
+                required
+            >
+
+                <option value="">
+                    Valitse vastaus...
+                </option>
+
+                <option>
+                    Alle 6 tuntia
+                </option>
+
+                <option>
+                    6–7 tuntia
+                </option>
+
+                <option>
+                    7–8 tuntia
+                </option>
+
+                <option>
+                    8–9 tuntia
+                </option>
+
+                <option>
+                    Yli 9 tuntia
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- KYSYMYS 5 -->
+
+        <div class="question">
+
+            <h2>
+                5. Tuntuuko sinusta, että TikTok vaikuttaa nukkumiseesi?
+            </h2>
+
+            <select
+                name="TikTokin koettu vaikutus uneen"
+                required
+            >
+
+                <option value="">
+                    Valitse vastaus...
+                </option>
+
+                <option>
+                    Ei ollenkaan
+                </option>
+
+                <option>
+                    Vähän
+                </option>
+
+                <option>
+                    Jonkin verran
+                </option>
+
+                <option>
+                    Melko paljon
+                </option>
+
+                <option>
+                    Erittäin paljon
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- LÄHETÄ -->
+
+        <button type="submit">
+            LÄHETÄ VASTAUS →
+        </button>
+
+
+        <div class="anonymous">
+
+            🔒 Kysely ei pyydä nimeä tai muita henkilötietoja.
+
+        </div>
+
+    </form>
+
+
+    <div id="thanks">
+
+        <h2>
+            Kiitos vastauksesta! 🌙
+        </h2>
+
+        <p>
+            Vastauksesi on vastaanotettu.
+        </p>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
